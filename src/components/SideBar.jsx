@@ -6,10 +6,10 @@ function SideBar() {
     const [extended, setExtended] = useState(false)
 
     return ( 
-    <div className={`hidden flex-col sm:flex min-h-full justify-between bg-[#f0f4f9] pr-6 pl-1.5 transition-all outfit  ${!extended ? 'lg:w-20 w-20' : 'lg:w-70 '}`}>
+    <div className={`hidden flex-col  md:flex min-h-full justify-between bg-[#f0f4f9] pr-6 pl-1.5 transition-all outfit  ${!extended ? 'lg:w-20 w-20' : 'lg:w-70 '}`}>
 
         <div className='h-[75%] '>
-        <img  onClick={() => setExtended(prev=>!prev)} className='h-11 cursor-pointer hover:bg-gray-300  mt-2  rounded-full p-2 transition-all' src= {assets.menu_icon} />
+        <img  onClick={() => setExtended(prev=>!prev)} className={`h-11 cursor-pointer hover:bg-gray-300 mt-2 rounded-full p-2 transition-all ${!extended ? 'rotate-180' : null}`} src= {assets.menu_icon} />
 
         <div className={`${!extended ? '-ml-6 flex justify-center items-center' : null }`}>
            <div onClick={() => setExtended(true)} className={`flex items-center my-5 cursor-pointer bg-gray-300 p-1 rounded-full hover:bg-gray-200 transition-all ${!extended ? 'justify-center pl-2' : null}`}>
