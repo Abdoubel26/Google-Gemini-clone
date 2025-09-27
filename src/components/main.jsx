@@ -40,7 +40,7 @@ function Main() {
                 </div>
 
                 <div className="bg-gray-200 p-3 rounded-xl flex flex-col justify-between  text-gray-700 cursor-pointer  h-40 w-50  transition-all hover:bg-gray-300" >
-                    <p>Brainstorm team bonding activitiesf ro our work retreat</p> 
+                    <p>Brainstorm team bonding activities for our work retreat</p> 
                     <img  className='h-10 w-10 p-1.5  bg-gray-50 rounded-full self-end' src={assets.message_icon} alt="" />  
                 </div>
 
@@ -54,26 +54,30 @@ function Main() {
         </>
         :  
 
-        <div>
-            <div>
-                <img src={assets.user_icon} alt="" />
-                <p>{recentPrompt}</p>
+        <div className="p-5 outfit overflow-y-scroll max-h-[70vh] px-[5%] no-scrollbar">
+            <div className="flex mb-7">
+                <img className=" rounded-full h-13" src={assets.user_icon} alt="" />
+                <div className="items-center flex w-fit my-2 mx-1 p-2 bg-gray-200 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl ">
+                  <p className="">{recentPrompt}</p>  
+                </div>
             </div>
 
-            <div className="flex border items-center justify-center">
+            <div className="flex justify-center">
                 <img className='h-10' src={assets.gemini_icon} alt="" />
-                <div className="">
-                    <p dangerouslySetInnerHTML={{__html:ResultData}}></p>
+                <div className="flex w-full items-center expectional">
+                    {loading ? 
+                    <div className="w-[100%] flex flex-col gap-[10px]">
+                       <div className="loader-animation rounded-xl bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] h-[20px]" style={{ backgroundSize: '800px 50px' }}></div>
+                       <div className="loader-animation rounded-xl bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] h-[20px]" style={{ backgroundSize: '800px 50px' }}></div>
+                       <div className="loader-animation rounded-xl bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] h-[20px]" style={{ backgroundSize: '800px 50px' }}></div>
+                    </div>
+                    : 
+                    <p className="text-[17px] font-normal" dangerouslySetInnerHTML={{__html:ResultData}}></p> }
+                    
                 </div>
                 
             </div>
-        </div>
-           /* <div className="mx-2 mr-5">
-                <div className=" h-[100%] p-3 outfit text-lg bg-gray-100 w-fit rounded-br-2xl rounded-bl-2xl rounded-tr-2xl">
-                    <p>{ResultData}</p>
-                </div>  
-            </div> */
-        
+        </div>        
 
         }
  
@@ -82,8 +86,8 @@ function Main() {
             <div className="sm:w-[70%] w-[90%] mt-2 sm:mt-0 bg-blue-50  text-xl rounded-full mx-3 flex">
                 <input type="text" onChange={(e)=> setInput(e.target.value)} value={input} className="w-[100%] bg-blue-50 py-4  text-xl p-2 rounded-full pl-4 mx-3 focus:outline-none" placeholder="Enter a prompt here" />
                 <img  className='h-6  mr-2 mt-5 cursor-pointer' src={assets.gallery_icon}></img>
-                <img className="  h-6 mt-5 cursor-pointer" src={assets.mic_icon} alt="" />
-                <img onClick={() => onSent()} className="mr-3 h-10 mt-3 cursor-pointer p-2 rounded-full hover:bg-gray-200 transition-all active:bg-gray-300" src={assets.send_icon}></img>
+                <img className={`h-6 mt-5 cursor-pointer ${input !== '' ? 'mr-0' : 'mr-3'}`} src={assets.mic_icon} alt="" />
+                {input !== '' ? <img onClick={() => onSent()} className="mr-3 h-10 mt-3 cursor-pointer p-2 rounded-full hover:bg-gray-200 transition-all active:bg-gray-300" src={assets.send_icon}></img> : null}
             </div>
             
         </div>

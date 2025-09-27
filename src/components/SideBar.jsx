@@ -1,9 +1,11 @@
 import { assets } from '../assets/assets'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { Context } from '../context/context';
 
 function SideBar() {
 
     const [extended, setExtended] = useState(false)
+    const {onSent, prevPrompts, setRecentPrompt} = useContext(Context)
 
     return ( 
     <div className={`hidden flex-col  md:flex min-h-full justify-between bg-[#f0f4f9] pr-6 pl-1.5 transition-all outfit  ${!extended ? 'lg:w-20 w-20' : 'lg:w-70 '}`}>
@@ -20,11 +22,15 @@ function SideBar() {
 
         { extended ? <div className='flex flex-col'>
             <p className='mb-2 border-b'>Recent</p>
-            <div className='flex items-center  py-1 cursor-pointer hover:bg-gray-200 rounded-xl border border-gray-300 transition-all px-2 '>
+
+            {prevPrompts.map((item, index)=> {
+                return(
+                    <div key={index} className='flex items-center my-1 py-1 cursor-pointer hover:bg-gray-200 rounded-xl border border-gray-300 transition-all px-2 '>
                 <img className='h-5' src={assets.message_icon}/>
-                <p>What is React...</p>
+                <p>{item.slice(0,18)}...</p>
             </div>
-        </div> : null }
+                )
+            })}    </div> : null }
 
         </div>
 
